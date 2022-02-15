@@ -30,6 +30,7 @@ public class movieList {
 
     public String getMvmsg() {
         return mvmsg;
+
     }
 
     public void setMvmsg(String mvmsg) {
