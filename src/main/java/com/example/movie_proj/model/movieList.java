@@ -15,18 +15,28 @@ import javax.persistence.*;
  * @Date 2022/2/1今天尝试完成一些后台的数据返回的工作
  */
 @Entity
-@Table(name = "movie")
+@Table(name = "movies")
 public class movieList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mo_id")
-    String id;
+
+    int id;
     @Column(name = "mo_name")
     String mvname;
     @Column(name = "mo_information")
     String mvinformation;
     @Column(name = "mo_type")
     String mvtype;
+    @Column(name = "mo_type2")
+    String mvtype2;
+
+    public String getMvtype2() {
+        return mvtype2;
+    }
+
+    public void setMvtype2(String mvtype2) {
+        this.mvtype2 = mvtype2;
+    }
 
     public String getMvmsg() {
         return mvmsg;
@@ -40,11 +50,11 @@ public class movieList {
     @Column(name="mo_msg")
     String mvmsg;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
