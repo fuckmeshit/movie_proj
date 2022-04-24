@@ -15,4 +15,6 @@ public interface MvlistDao extends JpaRepository<movieList,String> {
     movieList findByMvname(String mvna);
     @Query("select m from movieList m where m.mvtype2 like ?1")
     Page<movieList> findtypelist(String type,Pageable pageable);
+    @Query("select m from movieList  m  where m.id =?1")
+    movieList findrecomlist(int id);
 }

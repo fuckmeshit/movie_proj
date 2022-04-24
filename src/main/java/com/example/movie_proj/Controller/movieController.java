@@ -4,6 +4,8 @@ import com.example.movie_proj.model.comment;
 import com.example.movie_proj.model.movieList;
 import com.example.movie_proj.model.rate;
 import com.example.movie_proj.service.MvliService;
+import com.example.movie_proj.service.recomService;
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,8 @@ import java.util.List;
 public class movieController {
     @Autowired
     MvliService mvliService;
-
+    @Autowired
+    recomService recomservice;
     @CrossOrigin
     @RequestMapping("/api/mvlist/{page}/{size}")
     public List<movieList> getMovieList(
@@ -69,5 +72,13 @@ public class movieController {
         type="%"+type+"%";
         System.out.println(type);
         return mvliService.findtypelist(page,size,type);
+    }
+    @CrossOrigin
+    @RequestMapping("/api/mvrecom/{username}")
+    public List<movieList> getrecomlist(
+            @PathVariable("username")String username
+
+            ) throws TasteException {
+        return recomservice.recomlist(username);
     }
 }

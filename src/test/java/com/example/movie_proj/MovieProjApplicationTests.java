@@ -8,6 +8,7 @@ class MovieProjApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("hello word");
     }
 
 }
