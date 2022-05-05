@@ -4,6 +4,7 @@ import com.example.movie_proj.model.comment;
 import com.example.movie_proj.model.movieList;
 import com.example.movie_proj.model.rate;
 import com.example.movie_proj.service.MvliService;
+import com.example.movie_proj.service.adminUserService;
 import com.example.movie_proj.service.recomService;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.util.List;
 
 @RestController
 public class movieController {
+    @Autowired
+    adminUserService adminuserService;
     @Autowired
     MvliService mvliService;
     @Autowired
@@ -41,11 +44,15 @@ public class movieController {
             @RequestParam("mname") String mname,
             @RequestParam("rate") String rate
     ){
+        String uid=adminuserService.getByName(uname).getId().toString();
+        System.out.println(uid);
+        String mid=mvliService.findmv(mname).getId().toString();
+        System.out.println(mid);
+
         rate rate1=new rate();
-        int score=Integer.parseInt(rate);
-        rate1.setMname(mname);
-        rate1.setUname(uname);
-        rate1.setScore(score);
+        rate1.setMname(mid);
+        rate1.setUname(uid);
+        rate1.setScore(rate);
         mvliService.addrate(rate1);
     }
     @CrossOrigin
@@ -80,5 +87,22 @@ public class movieController {
 
             ) throws TasteException {
         return recomservice.recomlist(username);
+    }
+    @CrossOrigin
+    @RequestMapping("/api/rate/{uname}/{mname}")
+    public String getscore(
+            @PathVariable("uname") String uname,
+            @PathVariable("mname") String mname
+    ){
+        String uid=adminuserService.getByName(uname).getId().toString();
+        String mid=mvliService.findmv(mname).getId().toString();
+        System.out.println(uid);
+        System.out.println(mid);
+        String score=mvliService.getrate(uid,mid);
+        System.out.println(score);
+        if(score!=null)
+            return score;
+        else
+            return "null";
     }
 }

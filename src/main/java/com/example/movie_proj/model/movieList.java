@@ -20,7 +20,7 @@ public class movieList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    int id;
+    Integer id;
     @Column(name = "mo_name")
     String mvname;
     @Column(name = "mo_information")
@@ -50,11 +50,11 @@ public class movieList {
     @Column(name="mo_msg")
     String mvmsg;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

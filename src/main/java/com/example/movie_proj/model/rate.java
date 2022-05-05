@@ -3,14 +3,16 @@ package com.example.movie_proj.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "score")
+@Table(name = "taste_preferences")
 public class rate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+    @Column(name = "uid")
     String uname;
+    @Column(name = "mid")
     String mname;
-    int score;
+    String score;
 
     public Integer getId() {
         return id;
@@ -36,11 +38,11 @@ public class rate {
         this.mname = mname;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 }

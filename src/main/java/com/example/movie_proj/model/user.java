@@ -1,6 +1,7 @@
 package com.example.movie_proj.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "user")
 public class user {
     @Id
-    private int id;
+    private Integer id;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
@@ -16,11 +17,11 @@ public class user {
     @Column(name = "email")
     private String email;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

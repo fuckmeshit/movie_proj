@@ -36,7 +36,22 @@ public class MvliService {
     }
     public void addcomment(comment comment){
         mvCommentDao.save(comment);
-    }public void addrate(rate rate){
-        mvRateDao.save(rate);
     }
+    public void addrate(rate rate){
+        String mid=rate.getMname();
+        String score=rate.getScore();
+        String uid=rate.getUname();
+        if(mvRateDao.findByMnameAndUname(mid,uid)==null)
+        mvRateDao.save(rate);
+        else{
+            mvRateDao.Update(score,mid,uid);
+        }
+    }
+    public String getrate(String uname,String mname){
+        rate rate=mvRateDao.findByMnameAndUname(mname,uname);
+        String score= rate.getScore();
+        System.out.println(score);
+        return score;
+    }
+
 }
